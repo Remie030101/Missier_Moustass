@@ -51,28 +51,4 @@ jobs:
             -Dsonar.scm.provider=git
             -Dsonar.coverage.exclusions=**/*
 
-      - name: Download dependencies
-        run: |
-          curl -L -o "lib/sqlite-jdbc-3.49.1.0.jar" "https://github.com/xerial/sqlite-jdbc/releases/download/3.49.1.0/sqlite-jdbc-3.49.1.0.jar"
-
-      - name: Compile Java files
-        run: |
-          find src -name "*.java" > sources.txt
-          javac -cp "lib/*" -d bin @sources.txt
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=Remie030101_Missier_Moustas
-            -Dsonar.organization=remie030101
-            -Dsonar.sources=src
-            -Dsonar.java.binaries=bin
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.java.source=17
-            -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.scm.provider=git
-            -Dsonar.coverage.exclusions=**/*
+     
